@@ -4,7 +4,7 @@
     
     	<template id="s_ug_carousel" name="Carousel">
     	<section class="snippet-carousel">
-    		<div id="ug" >
+    		<div id="ug" class="container">
     			<div class="row">
     				<div class="ug-gallery">
     				<h1>Puto</h1>
@@ -110,14 +110,14 @@
     	
     	<template id="s_ug_carousel_options" inherit_id="s_ug_carousel" name="Container mode">
     		<xpath expr=".">
-    			<div data-selector="#ug">
+    			<div data-js="ug_theme_carousel" data-selector="#ug">
     				<li class="dropdown-submenu">
     					<a >Gallery width type</a>
     					<ul class="dropdown-menu">
-    						<li data-select_class="container" title="Fixed, based on screen size">
+    						<li data-select-class="container" title="Fixed, based on screen size">
     							<a>Responsive</a>
                         	</li>                        	
-	                        <li data-select_class="container-fluid" title="Always 100% of available space">
+	                        <li data-select-class="container-fluid" title="Always 100% of available space">
 	                            <a>Fluid</a>
 	                        </li>
     					</ul>
