@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="create_blog_posts_thumbnails" model="base.automation">
+            <field name="name">Blog Post: Create Images</field>
+            <field name="model_id" ref="website_blog.model_blog_post"/>
+            <field name="trigger">on_write</field>
+            <field name="active" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">
+record.create_images()
+            </field>
+        </record>
+		 <function model="blog.post" name="create_thumbnails"/>
+        
+
+</odoo>

@@ -1,0 +1,88 @@
+<odoo>
+    <data>
+    
+    	 <record id="ug_menu" model="website.menu">
+            <field name="name">Unite Gallery</field>
+            <field name="url">#</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">100</field>
+            <field name="website_id" ref="website.default_website"/>
+        </record>
+        
+        
+    	 <record id="ug_menu_default" model="website.menu">
+            <field name="name">Default</field>
+            <field name="url">ug_default</field>
+            <field name="parent_id" ref="ug_menu"/>
+            <field name="sequence" type="int">10</field>
+            <field name="website_id" ref="website.default_website"/>
+        </record>
+        
+        
+    	 <record id="ug_menu_compact" model="website.menu">
+            <field name="name">Compact</field>
+            <field name="url">ug_compact</field>
+            <field name="parent_id" ref="ug_menu"/>
+            <field name="sequence" type="int">20</field>
+            <field name="website_id" ref="website.default_website"/>
+        </record>
+        
+        
+    	 <record id="ug_menu_carousel" model="website.menu">
+            <field name="name">Carousel</field>
+            <field name="url">ug_carousel</field>
+            <field name="parent_id" ref="ug_menu"/>
+            <field name="sequence" type="int">30</field>
+            <field name="website_id" ref="website.default_website"/>
+        </record>
+        
+        
+    	 <record id="ug_menu_grid" model="website.menu">
+            <field name="name">Grid</field>
+            <field name="url">ug_grid</field>
+            <field name="parent_id" ref="ug_menu"/>
+            <field name="sequence" type="int">40</field>
+            <field name="website_id" ref="website.default_website"/>
+        </record>
+        
+        
+    	 <record id="ug_menu_slider" model="website.menu">
+            <field name="name">Slider</field>
+            <field name="url">ug_slider</field>
+            <field name="parent_id" ref="ug_menu"/>
+            <field name="sequence" type="int">50</field>
+            <field name="website_id" ref="website.default_website"/>
+        </record>
+        
+        
+    	 <record id="ug_menu_tiles" model="website.menu">
+            <field name="name">Tiles</field>
+            <field name="url">ug_tiles</field>
+            <field name="parent_id" ref="ug_menu"/>
+            <field name="sequence" type="int">60</field>
+            <field name="website_id" ref="website.default_website"/>
+        </record>
+        
+        
+    	 <record id="ug_menu_tilesgrid" model="website.menu">
+            <field name="name">Tiles Grid</field>
+            <field name="url">ug_tilesgrid</field>
+            <field name="parent_id" ref="ug_menu"/>
+            <field name="sequence" type="int">70</field>
+            <field name="website_id" ref="website.default_website"/>
+        </record>
+        
+        
+    	 <record id="ug_menu_video" model="website.menu">
+            <field name="name">Video</field>
+            <field name="url">ug_video</field>
+            <field name="parent_id" ref="ug_menu"/>
+            <field name="sequence" type="int">80</field>
+            <field name="website_id" ref="website.default_website"/>
+        </record>
+    
+    
+    </data>
+    
+    
+</odoo>

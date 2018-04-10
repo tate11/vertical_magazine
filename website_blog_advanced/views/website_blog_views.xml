@@ -1,0 +1,61 @@
+<odoo>
+  <data>
+  <record id="view_blog_blog_form_cc" model="ir.ui.view">
+  <field name="name">Atribution Creative Commons</field>
+  <field name="model">blog.blog</field>
+  <field name="inherit_id" ref="website_blog.view_blog_blog_form" />
+  <field name="arch" type="xml">
+  <xpath expr="//field[@name='subtitle']" position="after">
+  	<field name="schema" />	
+  </xpath>
+  <xpath expr="//group" position="after">
+  <notebook  >
+  	<page string="Categories"  autofocus="autofocus">
+  		<field name="website_category_ids" />
+  	</page>
+  	<page string="Posts Lists"  >
+  		<group>
+  		<group string="Right Column">
+  			<field name="most_read" />
+  			<field name="related" />
+  		</group>
+  		<group string="Carousel">
+  			<field name="most_read_c" />
+  			<field name="related_c" />  		
+  		</group>
+  		<group string="Video">
+  			<field name="video_channel" />
+  			<field name="video_c" />
+  		</group>
+  		</group>
+  	</page>
+  	<page string="Creative Commons" >
+  		<group>
+  		<group string="License">
+  		<field name="cc_share" />
+  		<field name="cc_commercial" />
+  		<field name="cc_compact_icon" /> 
+  		</group>
+  		<group string="Metadata">
+  		<field name="cc_metadata_title" />
+  		<field name="cc_metadata_attribution" />  
+  		</group>
+  		</group>
+  	</page>
+  		</notebook>
+  </xpath>
+  </field>
+  </record>
+  
+    <record id="view_blog_post_form" model="ir.ui.view">
+        <field name="name">blog.post.form</field>
+        <field name="model">blog.post</field>
+        <field name="inherit_id" ref="website_blog.view_blog_post_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='post_date']" position="after">
+                <field name="website_category_id" />
+            </xpath>
+        </field>
+    </record>
+  </data>
+</odoo>

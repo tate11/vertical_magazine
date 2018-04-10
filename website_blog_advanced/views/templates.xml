@@ -1,0 +1,419 @@
+<odoo>
+    <data>
+    
+<template id="assets_frontend" inherit_id="website.assets_frontend" name="Blog RC Front-end assets">
+    <xpath expr="//link[last()]" position="after">
+      <link type="text/less" rel="stylesheet" href="/website_blog_advanced/static/src/less/website_blog.less"/>
+    </xpath>
+	<xpath expr="//script[last()]" position="after">
+		<script type="text/javascript" src="/website_unitegallery/static/src/unitegallery/themes/carousel/ug-theme-carousel.js"/>
+	</xpath>
+</template>
+      
+      <template id="post_right_column" name="Right Column"
+        inherit_id="website_blog.blog_post_complete" active="False"  customize_show="True">
+    <xpath expr="//div[@id='blog_content']" position="replace">
+    <div class="container">
+	   <div class="row"> 
+		    <div class="col-sm-8"  t-ignore="True" id="main_column">
+			    <div id="blog_content" t-field="blog_post.content" class="blog_content mt32"/>
+			      <div class="o_blog_post_complete o_rc_sharing_links" id="social_sharing_rc">
+	            <a class="fa fa-twitter-square o_twitter_complete" id="o_twitter_complete"></a>
+	            <a class="fa fa-facebook-square o_facebook_complete" id="o_facebook_complete"></a>
+	            <a class="fa fa-linkedin-square o_linkedin_complete" id="o_linkedin_complete"></a>
+	            <a class="fa fa-google-plus-square o_google_complete" id="o_google_complete"></a>
+	        </div>
+		     </div>
+		     <div class="col-lg-3 col-lg-offset-1 col-sm-4" id="blog_post_right_column"/> 
+	  </div>
+  </div>
+  	<div id="post-widgets">
+  	</div>
+
+    </xpath> 
+    <xpath expr="//div[hasclass('o_blog_post_complete', 'o_sharing_links')]" position="replace">
+   
+    </xpath>
+</template>
+
+<!-- Option:Right Column: about us -->
+<template id="opt_blog_rc_about_us" name="About This Blog" priority="2"
+        inherit_id="post_right_column" active="False" customize_show="True">
+    <xpath expr="//div[@id='blog_post_right_column']" position="inside">
+        <section class="mt32">
+        <h4>About us</h4>
+        <p>
+            Write a small text here for when <b>new visitors</b> find your website
+            through your <b>blog entries</b>, referenced in Google.
+        </p>
+        </section>
+    </xpath>
+</template>
+
+<template id="opt_blog-post_rc_follow_us" name="Subscription" priority="4"
+        inherit_id="post_right_column" active="False" customize_show="True">
+    <xpath expr="//div[@id='blog_post_right_column']" position="inside">
+        <section class="mt32">
+            <h4>Stay updated</h4>
+            <t t-if="blog">
+                <t t-call="website_mail.follow">
+                    <t t-set="email" t-value="user_id.email"/>
+                    <t t-set="object" t-value="blog"/>
+                </t>
+            </t>
+            <p class="text-muted mb0 mt16">
+                Participate on our social stream.
+            </p>
+            <h2 class="mt4">
+                <a t-att-href="website.social_facebook" t-if="website.social_facebook"><i class="fa fa-facebook-square"/></a>
+                <a t-att-href="website.social_twitter" t-if="website.social_twitter"><i class="fa fa-twitter"/></a>
+                <a t-att-href="website.social_linkedin" t-if="website.social_linkedin"><i class="fa fa-linkedin"/></a>
+                <a t-att-href="website.social_youtube" t-if="website.social_youtube"><i class="fa fa-youtube-play"/></a>
+                <a t-att-href="website.social_googleplus" t-if="website.social_googleplus"><i class="fa fa-google-plus-square"/></a>
+                <a t-att-href="website.social_github" t-if="website.social_github"><i class="fa fa-github"/></a>
+                <a t-att-href="'/blog/%s/feed' % (blog.id)"><i class="fa fa-rss-square"/></a>
+            </h2>
+        </section>
+    </xpath>
+</template>
+
+<!-- Options: Blog Post : Most reads  -->
+<template id="opt_post_rc_most" name="Most read" priority="6"
+        inherit_id="post_right_column" active="False" customize_show="True">
+    <xpath expr="//div[@id='blog_post_right_column']" position="inside">
+        <section class="mt32">
+        <h4><bold>Most Read</bold></h4>
+        <ul t-foreach="blog_post.get_most_read()[0]" t-as="post" class="nav nav-pills nav-stacked">
+      		<li>
+      			<a t-att-href="post['url']">
+      			<div id="l_m">
+      			<span t-esc="post['name']"/>
+      			</div>
+      			</a>      			
+       			<br />
+      		</li>
+      	</ul>     
+        </section>
+    </xpath>
+</template>
+
+<template id="opt_post_rc_most_detail" name="Date and Views" 
+	inherit_id="opt_post_rc_most" active="False" customize_show="True">
+	<xpath expr="//div[@id='l_m']" position="after">
+	<div class="clearfix" >
+			<div class="pull-left" ><span  t-esc="post['published']" /></div>
+			<div class="pull-right"  ><i class="fa fa-eye" aria-hidden="true"></i > <span t-esc="post['visits']" /></div>
+	</div>		
+	</xpath>
+</template>
+
+<template id="opt_post_rc_most_tmb" name="Most read with thumbnail" priority="6"
+        inherit_id="post_right_column" active="False" customize_show="True">
+    <xpath expr="//div[@id='blog_post_right_column']" position="inside">
+        <section class="mt32">
+        	<h4><bold>Most Read</bold></h4>
+        		<div class="">
+      				<ul t-foreach="blog_post.get_most_read()[0]" t-as="post" class="nav nav-pills nav-stacked">
+      				<li>
+      				<a t-att-href="post['url']">
+      					<div class="media mt8" id="media_m">
+      						 <div class="media-left media-top">
+      								<img class="media-object"  t-att-src="post['img']" t-att-alt="post['name']" style="width:70px" />
+      							</div>
+      							<div id="author_m"  class="media-body">
+       								<h5 id="media-title" t-esc="post['name']"/>
+       							</div>      
+       						</div>
+       				</a>
+       				
+       				</li>
+       				</ul>
+       				</div>
+       				</section>
+       				</xpath>
+       				</template>
+       				
+<template id="opt_post_rc_most_tmb_author" name="Author" 
+	inherit_id="opt_post_rc_most_tmb" active="False" customize_show="True">
+	<xpath expr="//div[@id='author_m']/h5" position="after">
+			<h6><i class="fa fa-user-circle-o" aria-hidden="true"></i > <span t-esc="post['author']" /></h6>
+	</xpath>
+</template>
+
+<template id="opt_post_rc_most_tmb_detail" name="Date and Views" 
+	inherit_id="opt_post_rc_most_tmb" active="False" customize_show="True">
+	<xpath expr="//div[@id='media_m']" position="after">
+	<div class="clearfix" >
+			<div class="pull-left" ><span  t-esc="post['published']" /></div>
+			<div class="pull-right"  ><i class="fa fa-eye" aria-hidden="true"></i > <span t-esc="post['visits']" /></div>
+	</div>		
+	</xpath>
+</template>
+
+<template id="opt_post_rc_most_big" name="Most read Big" priority="6"
+	inherit_id="post_right_column" active="False" customize_show="True">
+	<xpath expr="//div[@id='blog_post_right_column']" position="inside">
+		<section class="mt32">
+        	<h4>Most Read</h4>
+        	<div class="">
+      				<ul t-foreach="blog_post.get_most_read()[0]" t-as="post" class="nav nav-pills nav-stacked">
+      				<li>
+      				<a t-att-href="post['url']">
+      				<div class="thumbnail mt8">
+      				<img  t-att-src="post['img2']" t-att-alt="post['name']"  style="width:100"/>      				
+      				</div>
+      				
+      				<div id="mb_title" ><h5 id="media-title_mb" t-esc="post['name']"/></div>
+      				</a>
+       				
+      				</li>
+      				</ul>
+      	 		</div>       		
+        </section>	
+	</xpath>
+</template>
+
+<template id="opt_post_rc_most_detail_b" name="Date and Views" 
+	inherit_id="opt_post_rc_most_big" active="False" customize_show="True">
+	<xpath expr="//h5[@id='media-title_mb']" position="after">
+	<div class="clearfix" >
+			<div class="pull-left" ><span  t-esc="post['published']" /></div>
+			<div class="pull-right"  ><i class="fa fa-eye" aria-hidden="true"></i > <span t-esc="post['visits']" /></div>
+	</div>		
+	</xpath>
+</template>
+       						
+       						
+<!-- Options: Blog Post : Related Posts -->
+<template id="opt_post_rc_related" name="Related topics" priority="8"
+		inherit_id="post_right_column" active="False" customize_show="True">
+	<xpath expr="//div[@id='blog_post_right_column']" position="inside">
+		<section class="mt32">
+        	<h4>Related Topics</h4>
+        	<ul t-foreach="blog_post.get_related_topics()[0]" t-as="post" class="nav nav-pills nav-stacked">
+        		<li>
+        			<a t-att-href="post['url']">
+        				<div id="l_r">
+        					<span t-esc="post['name']"/>
+        				</div>
+        			</a>
+        			<br /></li>
+        	</ul>        		
+        </section>	
+	</xpath>	
+</template>
+
+<template id="opt_post_rc_related_detail" name="Date and Views" 
+	inherit_id="opt_post_rc_related" active="False" customize_show="True">
+	<xpath expr="//div[@id='l_r']" position="after">
+	<div class="clearfix" >
+			<div class="pull-left" ><span  t-esc="post['published']" /></div>
+			<div class="pull-right"  ><i class="fa fa-eye" aria-hidden="true"></i > <span t-esc="post['visits']" /></div>
+	</div>		
+	</xpath>
+</template>
+
+<template id="opt_post_rc_related_tmb" name="Related topics with thumbnail" priority="8"
+	inherit_id="post_right_column" active="False" customize_show="True">
+	<xpath expr="//div[@id='blog_post_right_column']" position="inside">
+		<section class="mt32">
+        	<h4>Related Topics</h4>
+        	<div class="">
+      				<ul t-foreach="blog_post.get_related_topics()[0]" t-as="post" class="nav nav-pills nav-stacked">
+      				<li>
+      				<a t-att-href="post['url']">
+      					<div class="media mt8" id="media_r">
+      						 <div class="media-left media-top">
+      							<img class="media-object" t-att-src="post['img']" t-att-alt="post['name']" style="width:70px" />
+      					</div>
+      					<div  id="author_r" class="media-body">	
+       								<h5 id="media-title" t-esc="post['name']"/>
+       					</div>
+       					</div>
+       					</a>
+       				
+      				</li>
+      				</ul>
+      	 		</div>       		
+        </section>	
+	</xpath>
+</template>
+
+<template id="opt_post_rc_related_tmb_author" name="Author" 
+	inherit_id="opt_post_rc_related_tmb" active="False" customize_show="True">
+	<xpath expr="//div[@id='author_r']/h5" position="after">
+			<h6><i class="fa fa-user-circle-o" aria-hidden="true"></i > <span t-esc="post['author']" /></h6>
+	</xpath>
+</template>
+
+<template id="opt_post_rc_related_tmb_detail" name="Date and Views" 
+	inherit_id="opt_post_rc_related_tmb" active="False" customize_show="True">
+	<xpath expr="//div[@id='media_r']" position="after">
+	<div class="clearfix" >
+			<div class="pull-left" ><span  t-esc="post['published']" /></div>
+			<div class="pull-right"  ><i class="fa fa-eye" aria-hidden="true"></i > <span t-esc="post['visits']" /></div>
+	</div>		
+	</xpath>
+</template>
+
+<template id="opt_post_rc_related_big" name="Related topics Big" priority="8"
+	inherit_id="post_right_column" active="False" customize_show="True">
+	<xpath expr="//div[@id='blog_post_right_column']" position="inside">
+		<section class="mt32">
+        	<h4>Related Topics</h4>
+        	<div class="">
+      				<ul t-foreach="blog_post.get_related_topics()[0]" t-as="post" class="nav nav-pills nav-stacked">
+      				<li>
+      				<a t-att-href="post['url']">
+      				<div class="thumbnail mt8">
+      				<img  t-att-src="post['img2']" t-att-alt="post['name']"  style="width:100"/>      				
+      				</div>
+      				<div id="rb_title"><h5 id="media-title_r" t-esc="post['name']"/></div>
+      				</a>       				
+      				</li>
+      				</ul>
+      	 		</div>       		
+        </section>	
+	</xpath>
+</template>
+
+<template id="opt_post_rc_related_detail_b" name="Date and Views" 
+	inherit_id="opt_post_rc_related_big" active="False" customize_show="True">
+	<xpath expr="//h5[@id='media-title_r']" position="after">
+	<div class="clearfix" >
+			<div class="pull-left" ><span  t-esc="post['published']" /></div>
+			<div class="pull-right"  ><i class="fa fa-eye" aria-hidden="true"></i > <span t-esc="post['visits']" /></div>
+	</div>		
+	</xpath>
+</template>
+
+
+
+
+
+
+<!-- Options: Blog Post : Creative Commons  -->
+<template id="opt_creative_commons" name="Creative Commons 4.0" priority="20"
+        inherit_id="post_right_column" active="False" customize_show="True">
+    <xpath expr="//div[@id='blog_post_right_column']" position="inside">
+        <section class="mt32">
+        <h4><bold>Copyright</bold></h4>
+         <div style="text-align:center;" >
+        <t t-foreach="blog_post.get_cc()" t-as="cc">
+         <a style="text-align:center;" rel="license" t-att-href="cc['lc_url']" ><img alt="Licencia Creative Commons" clas="item-photo " t-att-src="cc['lc_img']" /></a><br />
+         <t t-if="cc['lc_metadata_title']" ><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title" t-esc="blog_post.name" /></t>
+         <t t-if="not cc['lc_metadata_title']" >This work</t>         
+         <t t-if="cc['lc_metadata_attribution']=='author'" > by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName" t-esc="blog_post.author_id.name" /></t>
+         <t t-if="cc['lc_metadata_attribution']=='company'" > by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName" t-esc="blog_post.blog_id.company_id.name" /></t> 
+         is licensed under a<br />          
+        <ul class="nav nav-pills nav-stacked">
+        <li>
+         <a rel="license" t-att-href="cc['lc_url']"><t t-esc="cc['lc_text']" /></a> 
+        </li>
+        </ul>
+         </t>
+        </div>
+        </section>
+    </xpath>
+</template>
+
+
+
+<!-- Options: Blog Post: user can reply -->
+<template id="opt_blog_post_rc_complete_comment" name="Allow blog post comment" inherit_id="post_right_column" active="False" customize_show="True">
+    <xpath expr="//div[@id='social_sharing_rc']" position="after">
+        <section id="comments" class="read_width">
+            <t t-call="portal.message_thread">
+              <t t-set="object" t-value="blog_post"/>
+            </t>
+        </section>
+    </xpath>
+</template> 
+
+<template id="opt_blog_post_rc_carousel" name="Related Posts Carousel" inherit_id="post_right_column" active="False" customize_show="True" priority="1" >
+	<xpath expr="//div[@id='post-widgets']"  position="inside">
+		<div class="container">
+			<h4>Related Topics</h4>
+		</div>			
+		<div class="container-fluid" >		
+			<div  t-foreach="blog_post.get_related_topics(carousel=True)[0]" t-as="post" id="related-gallery" class="mb16" style="display:none;">
+				<a t-att-href="post['url']">
+				<img t-att-alt="post['name']"
+				     t-att-src="post['img2']"
+				     t-att-data-description="post['published news']"
+				     t-att-data-image="post['cover']"
+				     style="display:none" />
+				</a>		
+			</div>
+			</div>
+				<t t-raw="website.unitegallery_id.get_carousel(website.unitegallery_id.id, 'Blog Posts', '#related-gallery')" />
+	</xpath>
+</template>
+
+<template id="opt_blog_post_most_carousel" name="Most Read Carousel" inherit_id="post_right_column" active="False" customize_show="True" priority="1" >
+	<xpath expr="//div[@id='post-widgets']"  position="inside">
+		<div class="container">
+			<h4>Most Read</h4>
+		</div>			
+		<div class="container-fluid" >		
+			<div  t-foreach="blog_post.get_most_read(carousel=True)[0]" t-as="post" id="most-read-gallery" class="mb16" style="display:none;">
+				<a t-att-href="post['url']">
+				<img t-att-alt="post['name']"
+				     t-att-src="post['img2']"
+				     t-att-data-description="post['published news']"
+				     t-att-data-image="post['cover']"
+				     style="display:none" />
+				</a>		
+			</div>
+			</div>
+				<t t-raw="website.unitegallery_id.get_carousel(website.unitegallery_id.id, 'Blog Posts', '#most-read-gallery')" />
+	</xpath>
+</template>
+
+
+    <template id="categories_recursive" name="Blog Category list">
+        <li t-att-class="'active' if c.id == int(category or 0) else None" t-if="c.post_count">
+            <a t-attf-href="/blog/#{ slug(blog) }/category/#{ slug(c) }/">
+                <t t-esc="c.name"/>
+                <span class="pull-right badge" t-esc="c.post_count"/>
+            </a>
+            <ul t-if="c.child_ids" class="nav nav-pills nav-stacked nav-hierarchy">
+                <t t-foreach="c.child_ids" t-as="c">
+                    <t t-call="website_blog_advanced.categories_recursive" />
+                </t>
+            </ul>
+        </li>
+    </template>
+
+    <template id="blog_category_template"  priority="7"
+              name="Categories"
+              inherit_id="website_blog.index_right"
+              active="False"
+              customize_show="True">
+
+        <xpath expr="//div[@id='main_column']" position="attributes">
+            <attribute name="class">col-sm-8</attribute>
+        </xpath>
+
+        <xpath expr="//div[@id='blog_right_column']" position="inside">
+            <section class="mt32 website_blog_categories">
+                <h4 class="title">Categories</h4>
+                <ul class="nav nav-pills nav-stacked mt16">
+                    <li t-att-class=" '' if category else 'active' ">
+                        <a t-attf-href="/blog/#{ slug(blog) }/" class="o_not_editable">
+                            All Posts
+                        </a>
+                    </li>
+                    <t t-foreach="blog.website_category_ids.filtered(lambda r: not r.parent_id)" t-as="c">
+                        <t t-call="website_blog_advanced.categories_recursive" />
+                    </t>
+                </ul>
+            </section>
+        </xpath>
+
+    </template>
+    
+ 
+
+    </data>
+</odoo>

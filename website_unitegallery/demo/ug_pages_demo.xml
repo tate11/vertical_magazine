@@ -1,0 +1,190 @@
+<odoo>
+    <data>
+    
+    	 <record id="ug_default" model="ir.ui.view">
+            <field name="name">Default Gallery</field>
+            <field name="type">qweb</field>
+            <field name="key">website.ug_default</field>
+            <field name="arch" type="xml">
+                <t name="Default Gallery" t-name="website.ug_default">
+                    <t t-call="website.layout">
+                        <div id="wrap">
+                            <div class="oe_structure">
+                            </div>
+                         </div>
+                    </t>
+                </t>
+           </field>
+        </record>
+        
+       <record id="ug_default_page" model="website.page">
+            <field name="website_published">True</field>
+            <field name="url">/ug_default</field>
+            <field name="view_id" ref="ug_default" />
+        </record>
+        
+        <record id="ug_compact" model="ir.ui.view">
+            <field name="name">Compact Gallery</field>
+            <field name="type">qweb</field>
+            <field name="key">website.ug_compact</field>
+            <field name="arch" type="xml">
+                <t name="Compact Gallery" t-name="website.ug_compact">
+                    <t t-call="website.layout">
+                        <div id="wrap">
+                            <div class="oe_structure">
+                            </div>
+                         </div>
+                    </t>
+                </t>
+           </field>
+        </record>
+        
+       <record id="ug_compact_page" model="website.page">
+            <field name="website_published">True</field>
+            <field name="url">/ug_compact</field>
+            <field name="view_id" ref="ug_compact" />
+        </record>
+        
+        
+        <record id="ug_carousel" model="ir.ui.view">
+            <field name="name">Carousel Gallery</field>
+            <field name="type">qweb</field>
+            <field name="key">website.ug_carousel</field>
+            <field name="arch" type="xml">
+                <t name="Carousel Gallery" t-name="website.ug_carousel">
+                    <t t-call="website.layout">
+                        <div id="wrap">
+                            <div class="oe_structure">
+                            </div>
+                         </div>
+                    </t>
+                </t>
+           </field>
+        </record>
+        
+       <record id="ug_carousel_page" model="website.page">
+            <field name="website_published">True</field>
+            <field name="url">/ug_carousel</field>
+            <field name="view_id" ref="ug_carousel" />
+        </record>
+        
+         
+        <record id="ug_grid" model="ir.ui.view">
+            <field name="name">Grid Gallery</field>
+            <field name="type">qweb</field>
+            <field name="key">website.ug_carousel</field>
+            <field name="arch" type="xml">
+                <t name="Grid Gallery" t-name="website.ug_carousel">
+                    <t t-call="website.layout">
+                        <div id="wrap">
+                            <div class="oe_structure">
+                            </div>
+                         </div>
+                    </t>
+                </t>
+           </field>
+        </record>
+        
+       <record id="ug_grid_page" model="website.page">
+            <field name="website_published">True</field>
+            <field name="url">/ug_grid</field>
+            <field name="view_id" ref="ug_grid" />
+        </record>
+        
+                
+        <record id="ug_slider" model="ir.ui.view">
+            <field name="name">Slider Gallery</field>
+            <field name="type">qweb</field>
+            <field name="key">website.ug_slider</field>
+            <field name="arch" type="xml">
+                <t name="Slider Gallery" t-name="website.ug_slider">
+                    <t t-call="website.layout">
+                        <div id="wrap">
+                            <div class="oe_structure">
+                            </div>
+                         </div>
+                    </t>
+                </t>
+           </field>
+        </record>
+        
+       <record id="ug_slider_page" model="website.page">
+            <field name="website_published">True</field>
+            <field name="url">/ug_slider</field>
+            <field name="view_id" ref="ug_slider" />
+        </record>
+        
+        <record id="ug_tiles" model="ir.ui.view">
+            <field name="name">Tiles Gallery</field>
+            <field name="type">qweb</field>
+            <field name="key">website.ug_tiles</field>
+            <field name="arch" type="xml">
+                <t name="Tiles Gallery" t-name="website.ug_tiles">
+                    <t t-call="website.layout">
+                        <div id="wrap">
+                            <div class="oe_structure">
+                            </div>
+                         </div>
+                    </t>
+                </t>
+           </field>
+        </record>
+        
+       <record id="ug_tiles_page" model="website.page">
+            <field name="website_published">True</field>
+            <field name="url">/ug_tiles</field>
+            <field name="view_id" ref="ug_tiles" />
+        </record>
+        
+        
+       <record id="ug_tilesgrid" model="ir.ui.view">
+            <field name="name">Tiles Grid Gallery</field>
+            <field name="type">qweb</field>
+            <field name="key">website.ug_tilesgrid</field>
+            <field name="arch" type="xml">
+                <t name="Tiles Grid Gallery" t-name="website.ug_tilesgrid">
+                    <t t-call="website.layout">
+                        <div id="wrap">
+                            <div class="oe_structure">
+                            </div>
+                         </div>
+                    </t>
+                </t>
+           </field>
+        </record>
+        
+       <record id="ug_tilesgrid_page" model="website.page">
+            <field name="website_published">True</field>
+            <field name="url">/ug_tilesgrid</field>
+            <field name="view_id" ref="ug_tilesgrid" />
+        </record>
+        
+ 
+       <record id="ug_video" model="ir.ui.view">
+            <field name="name">Video Gallery</field>
+            <field name="type">qweb</field>
+            <field name="key">website.ug_video</field>
+            <field name="arch" type="xml">
+                <t name="Video Gallery" t-name="website.ug_video">
+                    <t t-call="website.layout">
+                        <div id="wrap">
+                            <div class="oe_structure">
+                            </div>
+                         </div>
+                    </t>
+                </t>
+           </field>
+        </record>
+        
+       <record id="ug_video_page" model="website.page">
+            <field name="website_published">True</field>
+            <field name="url">/ug_video</field>
+            <field name="view_id" ref="ug_video" />
+        </record>
+        
+ 
+                
+    
+    
+    </data>
+</odoo>

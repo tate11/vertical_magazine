@@ -1,0 +1,102 @@
+<odoo>
+    <data>
+    
+	    <template id="assets_frontend" inherit_id="website.assets_frontend" name="Brand Nav-bar Front-end assets">
+	    	<xpath expr="." position="inside">
+	      		<link type="text/css" rel="stylesheet" href="/website_magazine_header/static/src/css/navbar_brand.css"/>
+	    	</xpath>
+		</template>
+
+        <template id="navbar_brand" name="Brand Navigation Bar"  inherit_id="portal.frontend_layout">
+        	  
+         <xpath expr="//div[hasclass('navbar', 'navbar-default', 'navbar-static-top')]" position="replace">
+         	<div id="aNav" class="overlay overlay-nav">
+        			<a href="javascript:void(0)" class="closebtn" onclick="closeANav()">&amp;times</a>
+				  <div class="overlay-menu-content">
+				  	
+				  </div>
+				</div>
+        		
+        		<div id="searchNav" class="overlay overlay-search">
+				  <a href="javascript:void(0)" class="closebtn" onclick="closeSearch()">&amp;times</a>
+				  <div class="overlay-content">
+				  		<form  t-att-action="'/blog/' + slug(website.search_blog_id)" method="get" t-att-class="search_class">
+				  			<t t-call="website.website_search_box" />
+				  		</form>
+				  </div>
+				</div>
+				<t t-set="h_color" t-value="' '" />
+				<t t-if="color">
+					<t t-set="h_color" t-value="'background-color:' + color + '!important;'" />
+				</t>
+        		<div class="container" t-att-style="h_color" >
+	        		<div class="row center ">
+	        			<div  class="col-xs-3" id="menu-xs">
+	        				  <button class="btn btn-default hidden-xs" type="button"  onclick="openANav()"><span class="fa fa-sticky-note"></span></button>
+	        				   <button type="button" class="navbar-toggle btn btn-default pull-left" data-toggle="collapse" data-target=".navbar-collapse" >
+					                <span class="fa fa-bars"></span>
+					            </button>
+	        			
+	        			</div>
+	        			<div  class="col-xs-6 navbar-header">
+	        				<a  href="/" >
+	        					<div t-field="website.logo" t-options="{'widget': 'image', 'style': 'margin:auto;'}" t-att-alt="'Logo of %s' % res_company.name" t-att-title="res_company.name" />
+	        				</a>
+	        			</div>
+	        			<div  class="col-xs-3">
+	        				 <button class="btn btn-default search-submit pull-right" type="button" onclick="openSearch()"><span class="fa fa-search"></span></button>
+	        			</div>
+	        		</div>
+        		</div>
+        	 <div class="navbar navbar-default navbar-static-top  navbar-collapse collapse">
+        	 	<div class="container">
+				        	 	<ul class="nav navbar-nav navbar-left" id="top_menu">
+				        	 		<t t-foreach="website.menu_id.child_id" t-as="submenu">
+						            <t t-call="website.submenu"/>
+						        </t>
+				        	 	</ul>
+                                <ul class="nav navbar-nav navbar-right" id="top_menu">
+                                	 <li groups="base.group_public">
+						                <a t-attf-href="/web/login">
+						                    <b>Sign in</b>
+						                </a>
+						            </li>
+                                    <li class="dropdown" t-ignore="true" t-if="not user_id._is_public()">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <b>
+                                                <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                                                <span class="caret"></span>
+                                            </b>
+                                        </a>
+                                        <ul class="dropdown-menu js_usermenu" role="menu">
+                                        	<li><a href="/my/home" role="menuitem">My Account</a></li>
+                                            <li id="o_logout"><a t-attf-href="/web/session/logout?redirect=/" role="menuitem">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+        	 </div></div>
+        </xpath>
+        </template>
+        
+        <template id="navbar_brand_scripts" name="Brand Navigation Bar Scripts"  inherit_id="website.layout">
+        	 <xpath expr="//div[@id='wrapwrap']" position="after"> 
+        		<script>
+					function openSearch() {
+					    document.getElementById("searchNav").style.height = "100%";
+					}
+					
+					function closeSearch() {
+					    document.getElementById("searchNav").style.height = "0%";
+					}
+					function openANav() {
+					    document.getElementById("aNav").style.width = "100%";
+					}
+					
+					function closeANav() {
+					    document.getElementById("aNav").style.width = "0%";
+					}
+				</script>
+        	</xpath>
+        </template>
+    </data>
+</odoo>

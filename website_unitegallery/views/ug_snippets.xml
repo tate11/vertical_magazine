@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+    	<template id="s_ug_carousel" name="Carousel">
+    	<section class="snippet-carousel">
+    		<div id="ug" >
+    			<div class="row">
+    				<div class="ug-gallery">
+    				<h1>Puto</h1>
+    				
+    				</div>  
+    			</div>
+    		</div>
+    	</section>
+    	
+    <!--  	<script type="text/javascript" src="/website_unitegallery/static/src/unitegallery/themes/carousel/ug-theme-carousel.js"/>
+    		
+    		<t t-raw="website.unitegallery_id.get_carousel(website.unitegallery_id.id, 'demo', '#gallery')" /> -->
+    	</template>
+    	
+
+    	
+    	<template id="s_ug_compact" name="Compact">
+    	<section>
+    		<div class="container">
+    			<div class="row">
+    			</div>
+    		</div>
+    	</section>
+    	
+    	</template>
+    	
+    	<template id="s_ug_default" name="Default">
+    	<section>
+    		<div class="container">
+    			<div class="row">
+    			</div>
+    		</div>
+    	</section>
+    	
+    	</template>
+    	
+    	<template id="s_ug_grid" name="Grid">
+    	<section>
+    		<div class="container">
+    			<div class="row">
+    			</div>
+    		</div>
+    	</section>
+    	
+    	</template>
+    	
+    	<template id="s_ug_slider" name="Slider">
+    	<section>
+    		<div class="container">
+    			<div class="row">
+    			</div>
+    		</div>
+    	</section>
+    	
+    	</template>
+    	
+    	<template id="s_ug_tiles" name="Tiles">
+    	<section>
+    		<div class="container">
+    			<div class="row">
+    			</div>
+    		</div>
+    	</section>
+    	</template>
+    	
+    	<template id="s_ug_tilesgrid" name="Tiles Grid">
+    	<section>
+    		<div class="container">
+    			<div class="row">
+    			</div>
+    		</div>
+    	</section>
+    	
+    	</template>
+    	
+    	<template id="s_ug_video" name="Video">
+    	<section>
+    		<div class="container">
+    			<div class="row">
+    			</div>
+    		</div>
+    	</section>
+    		
+    	</template>
+    
+    	<template id="snippets" inherit_id="website.snippets" >
+    		<xpath expr="//div[@id='snippet_feature']" position="after">
+    			<div class="o_panel_header">
+                    <i class="fa fa-th"/> Unite Gallery
+                </div>
+                <div class="o_panel_body">
+                	<t t-snippet="website_unitegallery.s_ug_default" t-thumbnail="/website_unitegallery/static/src/img/blocks/block_default.png"/>
+                	<t t-snippet="website_unitegallery.s_ug_compact" t-thumbnail="/website_unitegallery/static/src/img/blocks/block_compact.png"/>
+                	<t t-snippet="website_unitegallery.s_ug_carousel" t-thumbnail="/website_unitegallery/static/src/img/blocks/block_carousel.png"/>
+                	<t t-snippet="website_unitegallery.s_ug_grid" t-thumbnail="/website_unitegallery/static/src/img/blocks/block_grid.png"/>
+                	<t t-snippet="website_unitegallery.s_ug_slider" t-thumbnail="/website_unitegallery/static/src/img/blocks/block_slider.png"/>
+                	<t t-snippet="website_unitegallery.s_ug_tiles" t-thumbnail="/website_unitegallery/static/src/img/blocks/block_tiles.png"/>
+                	<t t-snippet="website_unitegallery.s_ug_tilesgrid" t-thumbnail="/website_unitegallery/static/src/img/blocks/block_tilesgrid.png"/>
+                	<t t-snippet="website_unitegallery.s_ug_video" t-thumbnail="/website_unitegallery/static/src/img/blocks/block_video.png"/>
+                </div>
+    		</xpath>
+    	</template>
+    	
+    	<template id="s_ug_carousel_options" inherit_id="s_ug_carousel" name="Container mode">
+    		<xpath expr=".">
+    			<div data-selector="#ug">
+    				<li class="dropdown-submenu">
+    					<a >Gallery width type</a>
+    					<ul class="dropdown-menu">
+    						<li data-select_class="container" title="Fixed, based on screen size">
+    							<a>Responsive</a>
+                        	</li>                        	
+	                        <li data-select_class="container-fluid" title="Always 100% of available space">
+	                            <a>Fluid</a>
+	                        </li>
+    					</ul>
+    				</li>
+    			</div>
+    		</xpath>
+    	</template>
+    
+    </data>
+</odoo>

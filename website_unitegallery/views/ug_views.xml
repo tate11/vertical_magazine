@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+     
+    
+    	<record id="view_ug_form" model="ir.ui.view">
+            <field name="name">unitegallery.form</field>
+            <field name="model">website.unitegallery</field>
+            <field name="arch" type="xml">
+                <form string="Unite Gallery Settings">
+                	<header>
+                		 <button string="Restart Default Values" name="%(website_ug_restart_action)d"  type="action" class="oe_highlight"  />
+                	</header>
+                	<sheet>
+                		<div class="oe_title">
+	                        <label for="name" class="oe_edit_only" string="Unite Gallery Settings"/>
+	                        <h1><field name="name" placeholder="Describe the configuration..."/></h1>
+	                        <group>
+	                        	<group string="Tile">
+	                        		<field name="tile_background_color" widget="color"/>
+	                        		<field name="tile_border_width" />
+	                        		<field name="tile_border_color"  widget="color"/>
+	                        		<field name="tile_border_radius" />
+	                        		<field name="tile_outline_color"  widget="color" />
+	                        	</group>
+	                        	<group string="Shadow">
+	                        		<field name="tile_shadow_h" />
+	                        		<field name="tile_shadow_v" />
+	                        		<field name="tile_shadow_blur" />
+	                        		<field name="tile_shadow_spread" />
+	                        		<field name="tile_shadow_color" widget="color" />	                        		 
+	                        	</group>
+	                        	<group string="Image">
+	                        		<field name="tile_image_effect_type" />
+	                        		<field name="tile_image_effect_reverse" />
+	                        		<field name="tile_overlay_color" />	  
+	                        		<field name="tile_overlay_opacity" />                      	
+	                        	</group>
+	                        	<group string="Text Panel">
+	                        		<field name="textpanel_bg_color" widget="color" />	 
+	                        		<field name="tile_textpanel_appear_type" />	 
+	                        		<field name="tile_textpanel_bg_opacity" />	 
+	                        		<field name="textpanel_title_color" widget="color" />	 
+	                        		<field name="textpanel_desc_color" widget="color" />	 	                        	
+	                        	</group>
+	                        	<group string="Light Box">
+	                        		<field name="lightbox_overlay_color" widget="color" />	 
+	                        		<field name="lightbox_overlay_opacity" />	
+	                        		<field name="lightbox_top_panel_opacity" /> 
+	                        		<field name="lightbox_show_numbers" />	 
+	                        		<field name="lightbox_numbers_color" widget="color" />	 	                        	
+	                        	</group>
+	                        </group>
+                    	</div>
+                    	<notebook>
+                    		<page string="Defaults">
+                    			 <field name="default_ids">
+                                    <tree string="Defaults" editable="bottom">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                    		</page>
+                    		<page string="Compacts">
+                    			 <field name="compact_ids">
+                                    <tree string="Compacts" editable="bottom">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                    		</page>
+                    		<page string="Carousels">
+                    			 <field name="carousel_ids">
+                                    <tree string="Carousels" editable="bottom">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                    		</page>
+                    		<page string="Grids">
+                    			 <field name="grid_ids">
+                                    <tree string="Grids" editable="bottom">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                    		</page>
+                    		<page string="Sliders">
+                    			 <field name="slider_ids">
+                                    <tree string="Sliders" editable="bottom">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                    		</page>
+                    		<page string="Tiles">
+                    			 <field name="tiles_ids">
+                                    <tree string="Tiles" editable="bottom">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                    		</page>
+                    		<page string="Tiles Grids">
+                    			 <field name="tilesgrid_ids">
+                                    <tree string="Tiles Grid" editable="bottom">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                    		</page>
+                    		<page string="Videos">
+                    			 <field name="video_ids">
+                                    <tree string="Videos" editable="bottom">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                    		</page>
+                    	</notebook>
+                	</sheet>
+                </form>
+             </field>
+          </record>
+          
+          <record id="website_ug_tree_view" model="ir.ui.view">
+            <field name="name">unitegallery.list</field>
+            <field name="model">website.unitegallery</field>
+            <field name="arch" type="xml">
+                <tree string="Unite Gallery">
+                	<field name="name"/>
+                </tree>
+            </field>
+          </record>
+          
+          <record id="website_ug_default_tree_view" model="ir.ui.view">
+            <field name="name">unitegallery.default.list</field>
+            <field name="model">website.unitegallery.default</field>
+            <field name="arch" type="xml">
+                <tree string="Default Gallery">
+                	<field name="name"/>
+                	<field name="gallery_id"/>
+                </tree>
+            </field>
+          </record>
+          
+         <record id="website_ug_compact_tree_view" model="ir.ui.view">
+            <field name="name">unitegallery.compact.list</field>
+            <field name="model">website.unitegallery.compact</field>
+            <field name="arch" type="xml">
+                <tree string="Compact Gallery">
+                	<field name="name"/>
+                	<field name="gallery_id"/>
+                </tree>
+            </field>
+          </record>
+          
+          <record id="view_ug_carousel_form" model="ir.ui.view">
+            <field name="name">unitegallery.carousel.form</field>
+            <field name="model">website.unitegallery.carousel</field>
+            <field name="arch" type="xml">
+                <form string="Carousel">
+                	<header>
+                		 <button string="Restart Default Values" name="set_defaults"  type="object" class="oe_highlight" />
+                	</header>
+                	<sheet>
+                		<group>
+                			<group>
+                				<field name="name" />  
+                			</group>
+                			<group>
+                				<field name="gallery_id"/>  
+                			</group>            		
+                		</group>
+                		<group>
+                			<group string="Gallery">
+                				<field name="theme_gallery_padding"/>
+                				<field name="theme_carousel_align"/>
+                				<field name="theme_carousel_offset"/>
+                				<field name="gallery_width"/>
+                				<field name="tile_width"/>
+                				<field name="tile_height"/>
+                				<field name="carousel_vertical_scroll_ondrag"/>
+                				<field name="carousel_space_between_tiles"/>
+                				<field name="carousel_autoplay_timeout"/>
+                				<field name="carousel_autoplay_direction"/>
+                			</group>
+                			<group string="Navigation">
+                				<field name="theme_enable_navigation"/>
+                				<field name="theme_navigation_position"/>
+                				<field name="theme_navigation_enable_play"/>
+                				<field name="theme_navigation_align"/>
+                				<field name="theme_navigation_offset_hor"/>
+                				<field name="theme_navigation_margin"/>
+                				<field name="theme_space_between_arrows"/>
+                			</group>
+                			<group string="Text Panel">
+                				<field name="tile_enable_textpanel"/>
+                				<field name="tile_textpanel_source"/>
+                				<field name="tile_textpanel_always_on"/>
+                				<field name="tile_textpanel_position"/>
+                				<field name="tile_textpanel_offset"/>
+                			</group>
+                			<group string="Icons">
+                				<field name="tile_enable_icons"/>
+                				<field name="tile_show_link_icon"/>
+                				<field name="tile_videoplay_icon_always_on"/>
+                				<field name="tile_space_between_icons"/>
+                			</group>
+                				<group string="Appearance">
+                					<field name="tile_enable_background"/>
+                					<field name="tile_enable_border"/>
+                					<field name="tile_enable_outline"/>
+                					<field name="tile_enable_shadow"/>
+                					<field name="tile_enable_overlay"/> 
+                					<field name="tile_enable_image_effect"/>                				
+                				</group>
+                				<group string="Actions">
+                					<field name="tile_enable_action"/> 
+                					<field name="tile_as_link"/> 
+                					<field name="tile_link_newpage"/> 
+                			</group>
+                		</group>
+                	</sheet>
+                </form>
+          	</field>
+          </record>
+          
+          <record id="website_ug_carousel_tree_view" model="ir.ui.view">
+            <field name="name">unitegallery.carousel.list</field>
+            <field name="model">website.unitegallery.carousel</field>
+            <field name="arch" type="xml">
+                <tree string="Carousel Gallery">
+                	<field name="name"/>
+                	<field name="gallery_id"/>
+                </tree>
+            </field>
+          </record>
+          
+          <record id="website_ug_grid_tree_view" model="ir.ui.view">
+            <field name="name">unitegallery.grid.list</field>
+            <field name="model">website.unitegallery.grid</field>
+            <field name="arch" type="xml">
+                <tree string="Grid Gallery">
+                	<field name="name"/>
+                	<field name="gallery_id"/>
+                </tree>
+            </field>
+          </record>
+          
+          <record id="website_ug_slider_tree_view" model="ir.ui.view">
+            <field name="name">unitegallery.slider.list</field>
+            <field name="model">website.unitegallery.slider</field>
+            <field name="arch" type="xml">
+                <tree string="Slider Gallery">
+                	<field name="name"/>
+                	<field name="gallery_id"/>
+                </tree>
+            </field>
+          </record>
+          
+          <record id="website_ug_tiles_tree_view" model="ir.ui.view">
+            <field name="name">unitegallery.tiles.list</field>
+            <field name="model">website.unitegallery.tiles</field>
+            <field name="arch" type="xml">
+                <tree string="Tiles Gallery">
+                	<field name="name"/>
+                	<field name="gallery_id"/>
+                </tree>
+            </field>
+          </record>
+          
+          <record id="website_ug_tilesgrid_tree_view" model="ir.ui.view">
+            <field name="name">unitegallery.tilesgrid.list</field>
+            <field name="model">website.unitegallery.tilesgrid</field>
+            <field name="arch" type="xml">
+                <tree string="Tiles Grid Gallery">
+                	<field name="name"/>
+                	<field name="gallery_id"/>
+                </tree>
+            </field>
+          </record>
+          
+         <record id="website_ug_video_tree_view" model="ir.ui.view">
+            <field name="name">unitegallery.video.list</field>
+            <field name="model">website.unitegallery.video</field>
+            <field name="arch" type="xml">
+                <tree string="Video Gallery">
+                	<field name="name"/>
+                	<field name="gallery_id"/>
+                </tree>
+            </field>
+          </record>
+          
+
+          
+
+  
+    
+    </data>
+</odoo>

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    
+    <template id="assets_frontend" inherit_id="website.assets_frontend" name="Shop">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/website_magazine/static/src/css/website_cover_page.css" />
+        </xpath>
+    </template>
+
+    <template id="assets_editor" inherit_id="website.assets_editor" name="Blog Cover Editor">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/website_magazine/static/src/js/website_magazine.editor.js"></script>
+        </xpath>
+    </template>
+    
+     <template id="posts_item" name="posts item">
+     		<t t-if="post.website_category_id.schema == False"><t t-set="schm" t-value="'BlogPosting'"/></t>
+     		<t t-else=""><t t-set="schm" t-value="post.website_category_id.schema"/></t>
+            <div itemscope="itemscope" t-att-itemtype="'http://schema.org/' + schm" >            
+                <div class="ribbon-wrapper rb-primary">
+                    <div class="ribbon btn btn-primary"><t t-esc="website.primary_ribbon" /></div>
+                </div>
+                <div class="ribbon-wrapper rb-success">
+                    <div class="ribbon btn btn-success"><t t-esc="website.success_ribbon" /></div>
+                </div>
+                <div class="ribbon-wrapper rb-info">
+                    <div class="ribbon btn btn-info"><t t-esc="website.info_ribbon" /></div>
+                </div>
+                <div class="ribbon-wrapper rb-warning">
+                    <div class="ribbon btn btn-warning"><t t-esc="website.warning_ribbon" /></div>
+                </div>
+                <div class="ribbon-wrapper rb-danger">
+                    <div class="ribbon btn btn-danger"><t t-esc="website.danger_ribbon" /></div>
+                </div>
+                <div t-att-class="'oe_post_image ' + style + ' ' + over_style" >
+                     <a   t-attf-href="/blog/#{ slug(post.blog_id) }/post/#{ slug(post)}">
+                        <img itemprop="image" t-att-alt="post.name" t-att-src="post.get_cover_url()[0]"   />
+ 			         </a> 
+                </div>
+                <meta itemprop="mainEntityOfPage"  t-att-content="request.httprequest.url_root"/>
+                <meta itemprop="headline"  t-att-content="post.name"/>
+                <meta itemprop="description"  t-att-content="post.subtitle"/>
+                <meta itemprop="image"  t-att-content="post.get_cover_url()[0]"/>
+                <meta itemprop="url"  t-attf-content="/blog/#{ slug(post.blog_id) }/post/#{ slug(post)}"/>
+                <meta itemprop="author"  t-att-content="post.author_id.name"/> 
+                <div itemprop="publisher" itemscope="itemscope" itemtype="https://schema.org/Organization" >
+                	<meta itemprop="name"  t-att-content="website.company_id.name"/> 
+                	<div itemprop="logo" itemscope="itemscope" itemtype="https://schema.org/ImageObject">
+                		<meta itemprop="url"  t-attf-content="#{request.httprequest.url_root + 'logo.png'}"/> 
+                	</div>
+                </div>
+                <meta itemprop="datePublished"  t-att-content="post.post_date"/> 
+                <meta itemprop="dateModified"  t-att-content="post.write_date"/> 
+                <t t-if="website.frosted_glass==True" >
+                <section class="frosted">
+               <span>
+                	<a t-attf-href="/blog/#{ slug(post.blog_id) }/category/#{ slug(post.website_category_id)}"><t t-esc="post.website_category_id.name" /></a>
+                </span>
+                  <h5> <strong>
+                        <a  t-attf-href="/blog/#{ slug(post.blog_id) }/post/#{ slug(post)}" t-att-content="post.name" t-field="post.name" /> 
+                        </strong>
+                  </h5> 					
+                <div t-if="website.author==True"  >                       
+                            <a t-attf-href="/blog/#{ slug(post.blog_id) }/author/#{ slug(post.author_id)}">
+                            	<span t-esc="post.author_id.name" />
+                            </a>                         
+                    </div>
+                </section>
+                </t>
+                <t t-if="website.frosted_glass==False">
+                 <section class="lettering">
+               <span>
+                	<a t-attf-href="/blog/#{ slug(post.blog_id) }"><t t-esc="post.website_category_id.name" /></a>
+                </span>
+                  <h5>      <strong>
+                        <a  t-attf-href="/blog/#{ slug(post.blog_id) }/post/#{ slug(post)}" t-att-content="post.name" t-field="post.name" /> 
+                        </strong>
+                  </h5>  
+                 <div t-if="website.author==True"  >                       
+                            <a t-attf-href="/blog/#{ slug(post.blog_id) }/author/#{ slug(post.author_id)}">
+                            	<span t-esc="post.author_id.name" />
+                            </a>                         
+                    </div>
+                </section>
+                </t>
+            </div>
+    </template>
+
+	<template id="layout_cover_page" inherit_id="website.homepage" name="Blog Cover Page">
+		<xpath expr="//div[@id='wrap']" position="replace">
+			
+			 <div class="oe_structure" />			
+				 <div class="container oe_website_cover_page">
+				 	 <div class="row mt32">
+				 	 	<div class="js_cover">
+				 	 		<div class="col-md-12 " id="posts_grid" >
+				 	 			<table width="100%">
+                        			<tbody>
+                        				<tr t-ignore="true">
+                                        	<td t-foreach="range(0,rows)" t-as="row" t-attf-width="#{100/rows}%"></td>
+                                        </tr>
+                                        <tr t-foreach="bins" t-as="tr_post">
+                                        	<t t-foreach="tr_post" t-as="td_post">
+                                            	<t t-if="td_post">
+                                                	<t t-set="post" t-value="td_post['post']" />
+                                                		<td t-att-colspan="td_post['x'] != 1 and td_post['x']" t-att-rowspan="td_post['y'] != 1 and td_post['y']" t-attf-class="oe_post oe_grid oe-height-#{td_post['y']*2} #{ td_post['class'] }">
+                                                         	<t t-set="post_image" t-value="td_post['x']+td_post['x'] &gt; 2" /> 
+                                                        	<t t-call="website_magazine.posts_item" />                                                     
+                                                		</td>
+                                            		</t>
+                                            			<td t-if="not td_post" class="oe-height-2" />
+                                        		</t>
+                                   		 </tr>
+                        		</tbody>
+                        	</table>
+                        	<t t-if="not bins">
+			   					<div class="text-center text-muted oe_post">
+			   						 <h3 class="css_editable_display">No post defined.</h3>
+			   					</div>
+			   				</t> 
+				 	 		</div>
+				 	 	</div>
+				 	 </div>
+				 	 <t t-if="website.pagination==True">
+				 	 <div class="posts_pager">
+				 	 	<ul t-if="pager['page_count'] > 1" t-attf-class="#{ classname or '' } pagination" t-att-style="style or None">
+            				<li t-att-class=" 'disabled' if pager['page']['num'] == 1 else None ">
+                				<a t-att-href=" pager['page_previous']['url'] if pager['page']['num'] != 1 else None">Prev</a>
+            				</li>
+            			<t t-foreach="pager['pages']" t-as="page">
+                			<li t-att-class=" 'active' if page['num'] == pager['page']['num'] else None "> <a t-att-href="page['url']" t-raw="page['num']"></a></li>
+            			</t>
+            				<li t-att-class=" 'disabled' if pager['page']['num'] == pager['page_count'] else None ">
+                				<a t-att-href="pager['page_next']['url'] if pager['page']['num'] != pager['page_count'] else None">Next</a>
+            				</li>
+        				</ul>
+				 	 </div>
+				 	 </t>
+				 </div>		
+			 <div class="oe_structure mb32" />
+		</xpath>
+	</template>
+	
+	<template id="blog_post_short_seo" name="Blog Posts SEO"  inherit_id="website_blog.blog_post_short"
+	customize_show="True" active="False" >
+		<xpath expr="//section[@class='mb0']" position="replace">
+		</xpath>
+		<xpath expr="//div[@class='container mb64']" position="replace">
+			<t t-if="header=='blog'">
+				<div t-if="not blog_posts" class="container mb64">
+                    <p class="css_editable_hidden">
+                        <h1>No blog post yet.</h1>
+                    </p>
+                  	<p groups="website.group_website_designer">
+                        Click on "New Page" in the top-right corner to write your first blog post.
+                    </p>
+                </div>
+			</t>
+			<t t-elif="header=='category'">
+				<t t-set="h_color" t-value="' '" />
+				<t t-if="color">
+					<t t-set="category_color" t-value="'border-left: 8px solid ' + color + ';'" />
+				</t>
+				<div  class="container mb64">
+					<div class="css_editable_hidden">
+                        <h1 t-att-style="category_color"><t t-esc="target"   /></h1>
+                    </div>
+				</div>
+			</t>
+			<t t-elif="header=='tag'">
+				<div  class="container mb64">
+					<p class="css_editable_hidden">
+                        <h1><t t-esc="target" /></h1>
+                    </p>
+				</div>
+			</t>
+			<t t-elif="header=='author'">
+				<div class="row s_no_resize_cols mt16">
+                        <div t-field="target.image" class="o_not_editable col-md-4"   t-field-options='{"widget": "image", "alt":target.name, "class":"img-circle center-block shadow mt32"}' />  
+                        
+                        <div class="col-md-8">
+                            <h1 class="o_default_snippet_text" t-field="target.name"  />
+                            <p class="text-muted o_default_snippet_text" t-field="target.semblance" />
+                            <p><t t-esc="str(state_info['published']) + ' articles published'" /></p>
+                            <h4><span t-esc="target.twitter" /></h4>
+                        </div>
+                    </div>
+			</t>
+			<t t-elif="header=='search'">
+				<div>
+					<div t-if="not blog_posts" class="container mb64">
+						<p class="css_editable_hidden">
+	                        <h4><t t-esc="'Your search ' + search + ' did not produce any results'" /></h4>
+	                    </p>
+					</div>
+					<div t-else="not blog_posts" class="container mb64">
+						<p class="css_editable_hidden">
+						<t t-if="state_info['published']==1" >
+	                        <h1><t t-esc="str(state_info['published']) + ' result for ' + search" /></h1>
+	                    </t>
+	                    <t t-else="state_info['published']>1">
+	                    	<h1><t t-esc="str(state_info['published']) + ' results for ' + search" /></h1>
+	                    </t>
+	                    </p>
+					</div>
+				</div>			
+			</t>
+		</xpath>
+    	<xpath expr="//div[@name='blog_post']" position="replace">    		
+        	 <t t-foreach="blog_posts" t-as="blog_post" >
+        	 <t t-if="blog_post.website_category_id.schema == False"><t t-set="schm" t-value="'BlogPosting'"/></t>
+     			<t t-else=""><t t-set="schm" t-value="blog_post.website_category_id.schema"/></t>
+        	 	 <div class="mb32" name="blog_post" itemscope="itemscope" t-att-itemtype="'http://schema.org/' + schm" >
+        	 	 <div name="blog_post_info" class="">
+        	 	 <a t-attf-href="/blog/#{ slug(blog_post.blog_id) }/post/#{ slug(blog_post) }">
+                        <h2 t-field="blog_post.name" class="mb4 o_blog_post_title">Untitled Post</h2>
+                    </a>
+                    <div class="text-muted">
+                        <p t-field="blog_post.teaser" class="mb12 mt12 o_blog_post_teaser"/>
+                        <div name='blog_post_data' class='mb0'>
+                            <a t-attf-href="/blog/#{ slug(blog_post.blog_id) }/author/#{blog_post.get_author_slug()}">
+                            	<span t-esc="blog_post.get_author()" style="display: inline-block;" />
+                            </a>
+                            &amp;mdash; <span t-field="blog_post.post_date" t-options='{"format": "MMMM yyyy"}'/>
+                            <span t-if="len(blog_post.message_ids) &gt; 0">
+                                &amp;mdash; <t t-esc="len(blog_post.message_ids)"/>
+                                <t t-if="len(blog_post.message_ids) &lt;= 1" >comment</t>
+                                <t t-if="len(blog_post.message_ids) &gt; 1">comments</t>
+                            </span>
+                            <span t-if="blog_post.visits &gt; 0">
+                                &amp;mdash; <t t-esc="blog_post.visits"/>
+                                <t t-if="blog_post.visits &lt;= 1" >view</t>
+                                <t t-if="blog_post.visits &gt; 1">views</t>
+                            </span>
+                            <span t-if="not blog_post.website_published" class="label label-danger">unpublished</span>
+                            <br />
+                            <div class=" pull-right">
+                            <span class="fa fa-tags"/>
+                            <!-- To display tags //no options -->
+                            <t t-foreach="blog_post.tag_ids" t-as="one_tag">
+                                <a class="mr8" t-attf-href="#{blog_url(tag=one_tag.id, date_begin=False, date_end=False)}" t-esc="one_tag.name"/>
+                            </t>
+                            </div>
+                            <div class="o_sharing_links text-center mt16">
+                                <a class="fa fa-twitter-square o_twitter"></a>
+                                <a class="fa fa-facebook-square o_facebook"></a>
+                                <a class="fa fa-linkedin-square o_linkedin"></a>
+                                <a class="fa fa-google-plus-square o_google"></a>
+                            </div>
+                            </div>
+                            <meta itemprop="mainEntityOfPage"  t-att-content="request.httprequest.url_root"/>
+			                <meta itemprop="headline"  t-att-content="blog_post.name"/>
+			                <meta itemprop="description"  t-att-content="blog_post.subtitle"/>
+			                <meta itemprop="image"  t-att-content="blog_post.get_cover_url()[0]"/>
+			                <meta itemprop="url"  t-attf-content="/blog/#{ slug(blog_post.blog_id) }/post/#{ slug(blog_post)}"/>
+			                <meta itemprop="author"  t-att-content="blog_post.get_author()"/> 
+			                <div itemprop="publisher" itemscope="itemscope" itemtype="https://schema.org/Organization" >
+			                	<meta itemprop="name"  t-att-content="website.company_id.name"/> 
+			                	<div itemprop="logo" itemscope="itemscope" itemtype="https://schema.org/ImageObject">
+			                		<meta itemprop="url"  t-attf-content="#{request.httprequest.url_root + 'logo.png'}"/> 
+			                	</div>
+			                </div>
+			                <meta itemprop="datePublished"  t-att-content="blog_post.post_date"/> 
+			                <meta itemprop="dateModified"  t-att-content="blog_post.write_date"/> 
+                            <br/>
+                        </div>
+                 </div>
+                 
+                </div>                 
+                </t>
+                <div class="container text-center">
+            <t t-call="website.pager" />
+        </div>
+    	</xpath>
+	</template>
+	
+	
+	<!-- Option: Blog Post List: cover image -->
+<template id="opt_blog_post_cover_image" name="Cover image"
+        customize_show="True" active="False" inherit_id="website_magazine.blog_post_short_seo">
+    <xpath expr="//div[@name='blog_post_info']/.." position="before">
+    	<div class="col-sm-5" style="padding-top:20px">    		    		
+        <div>
+        	<h4><a t-attf-href="/blog/#{ slug(blog_post.blog_id) }/category/#{ slug(blog_post.website_category_id)}"><t t-esc="blog_post.website_category_id.name" /></a></h4>
+        </div>
+    		 <div t-att-class="'oe_post_image ' + website.style + ' ' + website.over_style" >
+    		 	<a t-attf-href="/blog/#{ slug(blog_post.blog_id) }/post/#{ slug(blog_post) }">
+      				<img class="" t-att-src="'/website_blog/static/src/img/bp_sld_' + str(blog_post.id) + '.jpg'" t-att-alt="blog_post.name" style="width:100%" />
+      			</a>	
+      		</div>  
+      	</div>        
+    </xpath>
+     <xpath expr="//div[@name='blog_post_info']" position="attributes">
+        <attribute name="class" add="col-sm-7" separator=" "/>
+    </xpath>
+</template>
+	
+	<!-- Option: Blog Post List: display the author avatar -->
+<template id="opt_blog_post_author_avatar_" name="Author avatar"
+        customize_show="True" active="False" inherit_id="website_magazine.blog_post_short_seo">
+    <xpath expr="//span[@t-esc='blog_post.get_author()']" position="before">
+        <t t-if="blog_post.author_avatar">
+            <div t-field="blog_post.author_avatar" class="o_not_editable" style="display:inline" t-field-options='{"widget": "image", "class": "img-circle o_author_avatar_little "}' />
+        </t>
+    </xpath>
+</template>
+
+
+
+</odoo>

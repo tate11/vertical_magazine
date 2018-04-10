@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	
+
+        
+		   <menuitem name="Unite Gallery"
+            id="menu_website_unitegallery_list"
+            parent="website.menu_website_global_configuration"
+            sequence="80"
+            groups="base.group_no_one"/>
+            
+           <record id="action_website_ug_sets" model="ir.actions.act_window">
+            <field name="name">Unite Gallery Sets</field>
+            <field name="res_model">website.unitegallery</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="website_ug_tree_view"/>
+            <field name="target">current</field>
+         </record>
+            
+           <menuitem name="Unite Gallery Sets"
+            id="menu_website_ug_sets"
+            action="action_website_ug_sets"
+            parent="menu_website_unitegallery_list"
+            sequence="1"
+            groups="base.group_no_one"/>
+            
+          <menuitem name="Galleries"
+            id="menu_website_ug_galleries"
+            parent="menu_website_unitegallery_list"
+            sequence="2"
+            groups="base.group_no_one"/>
+            
+          <record id="action_website_ug_default" model="ir.actions.act_window">
+            <field name="name">Default</field>
+            <field name="res_model">website.unitegallery.default</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="website_ug_default_tree_view"/>
+            <field name="target">current</field>
+         </record>
+       
+            
+          <menuitem name="Default"
+            id="menu_website_ug_default"
+            action="action_website_ug_default"
+            parent="menu_website_ug_galleries"
+            sequence="1"
+            groups="base.group_no_one"/>
+            
+                    
+          <record id="action_website_ug_compact" model="ir.actions.act_window">
+            <field name="name">Compact</field>
+            <field name="res_model">website.unitegallery.compact</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="website_ug_compact_tree_view"/>
+            <field name="target">current</field>
+         </record>
+         
+            
+          <menuitem name="Compact"
+            id="menu_website_ug_compact"
+            action="action_website_ug_compact"
+            parent="menu_website_ug_galleries"
+            sequence="2"
+            groups="base.group_no_one"/>
+            
+                      
+          <record id="action_website_ug_carousel" model="ir.actions.act_window">
+            <field name="name">Carousel</field>
+            <field name="res_model">website.unitegallery.carousel</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="website_ug_carousel_tree_view"/>
+            <field name="target">current</field>
+         </record>
+            
+            <menuitem name="Carousel"
+            id="menu_website_ug_carousel"
+            action="action_website_ug_carousel"
+            parent="menu_website_ug_galleries"
+            sequence="3"
+            groups="base.group_no_one"/>
+            
+                     
+          <record id="action_website_ug_grid" model="ir.actions.act_window">
+            <field name="name">Grid</field>
+            <field name="res_model">website.unitegallery.grid</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="website_ug_grid_tree_view"/>
+            <field name="target">current</field>
+         </record>
+            
+            <menuitem name="Grid"
+            id="menu_website_ug_grid"
+            action="action_website_ug_grid"
+            parent="menu_website_ug_galleries"
+            sequence="4"
+            groups="base.group_no_one"/>
+            
+                      
+          <record id="action_website_ug_slider" model="ir.actions.act_window">
+            <field name="name">Slider</field>
+            <field name="res_model">website.unitegallery.slider</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="website_ug_slider_tree_view"/>
+            <field name="target">current</field>
+         </record>
+            
+            <menuitem name="Slider"
+            id="menu_website_ug_slider"
+            action="action_website_ug_slider"
+            parent="menu_website_ug_galleries"
+            sequence="5"
+            groups="base.group_no_one"/>
+            
+                      
+          <record id="action_website_ug_tiles" model="ir.actions.act_window">
+            <field name="name">Tiles</field>
+            <field name="res_model">website.unitegallery.tiles</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="website_ug_tiles_tree_view"/>
+            <field name="target">current</field>
+         </record>
+            
+            <menuitem name="Tiles"
+            id="menu_website_ug_tiles"
+            action="action_website_ug_tiles"
+            parent="menu_website_ug_galleries"
+            sequence="6"
+            groups="base.group_no_one"/>   
+            
+                     
+          <record id="action_website_ug_tilesgrid" model="ir.actions.act_window">
+            <field name="name">Tiles Grid</field>
+            <field name="res_model">website.unitegallery.tilesgrid</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="website_ug_tilesgrid_tree_view"/>
+            <field name="target">current</field>
+         </record>
+            
+         
+            
+            <menuitem name="Tiles Grid"
+            id="menu_website_ug_tilesgrid"
+            action="action_website_ug_tilesgrid"
+            parent="menu_website_ug_galleries"
+            sequence="7"
+            groups="base.group_no_one"/>
+            
+                        
+          <record id="action_website_ug_video" model="ir.actions.act_window">
+            <field name="name">Video</field>
+            <field name="res_model">website.unitegallery.video</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="website_ug_video_tree_view"/>
+            <field name="target">current</field>
+         </record>
+            
+            <menuitem name="Video"
+            id="menu_website_ug_video"
+            action="action_website_ug_video"
+            parent="menu_website_ug_galleries"
+            sequence="8"
+            groups="base.group_no_one"/>
+	</data>
+</odoo>

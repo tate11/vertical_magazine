@@ -1,0 +1,95 @@
+<odoo>
+    <data>
+    
+    <template id="categories_recursive" name="Blog Category list">
+    	   <li >
+	            <a t-attf-href="/blog/#{ slug(website.search_blog_id) }/category/#{ slug(c) }/">
+	                <t t-esc="c.name"/>
+	                <span class="pull-right badge" t-esc="c.post_count"/>
+	            </a>
+	            <ul t-if="c.child_ids" class="nav nav-pills nav-stacked nav-hierarchy">
+	                <t t-foreach="c.child_ids" t-as="c">
+	                    <t t-call="website_magazine_footer.categories_recursive" />
+	                </t>
+	            </ul>
+	        </li>  
+    </template>
+    
+       <template id="magazine_footer" name="Magazine Footer" inherit_id="website.footer_custom">
+       		<xpath expr="//div[@id='footer']" position="replace" >
+       		 <div id="footer" class="container hidden-print" t-if='not no_footer'>
+	            <section>
+	                <div class="container">
+		       		<div class="row">       			
+		       			<div class="col text-center">
+		       				<h3>Suscribe to our newsletter</h3>
+		       				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						<div style="width:400px; margin:auto;">
+				       			<t t-if="website.search_blog_id">
+						        	<t t-call="website_mail.follow">
+						           	 	<t t-set="email" t-value="user_id.email"/>
+						            		<t t-set="object" t-value="website.search_blog_id"/>
+						       		</t>
+				            		</t>
+				            	</div>	
+		       				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non ipsum harum quia nostrum in quidem a dignissimos fuga adipisci ullam voluptates enim numquam veritatis animi eum tempora distinctio excepturi reprehenderit.</p>	       			
+		       			</div>
+		       		</div>
+		       		<div class="row">
+		       			<div class="col-md-4 mt32">
+		       				<div t-if="website.search_blog_id" style="width:250px">
+			       				<h4 class="title">Categories</h4>
+			       				 <ul class="nav nav-pills nav-stacked mt16">
+		                    <t t-foreach="website.search_blog_id.website_category_ids.filtered(lambda r: not r.parent_id)" t-as="c">
+		                          <t t-call="website_magazine_footer.categories_recursive" />  
+		                    </t>
+		                </ul>
+			                </div>
+		       			</div>
+		       			<div class="col-md-4 mt32 text-center ">
+		       				<a  href="/">
+			        			<div  t-field="website.logo" t-options="{'widget': 'image', 'style': 'margin:auto;'}" t-att-alt="'Logo of %s' % res_company.name" t-att-title="res_company.name" />
+			        		</a>
+		       			<p class="mt16">Copyright &amp;copy; <span t-field="res_company.name" itemprop="name">Company name</span></p>
+		       			<t t-if="website.search_blog_id.cc_share" >
+		       				<t t-set="cc" t-value="website.get_cc()[0]" />
+		       				<a t-att-href="cc['lc_url']" ><img t-att-src="cc['lc_img']" /></a>
+		       			</t>
+		       			 <h2>
+		                        <a t-att-href="website.social_facebook" t-if="website.social_facebook"><i class="fa fa-facebook-square"/></a>
+		                        <a t-att-href="website.social_twitter" t-if="website.social_twitter"><i class="fa fa-twitter"/></a>
+		                        <a t-att-href="website.social_linkedin" t-if="website.social_linkedin"><i class="fa fa-linkedin"/></a>
+		                        <a t-att-href="website.social_youtube" t-if="website.social_youtube"><i class="fa fa-youtube-play"/></a>
+		                        <a t-att-href="website.social_googleplus" t-if="website.social_googleplus" rel="publisher"><i class="fa fa-google-plus-square"/></a>
+		                        <a t-att-href="website.social_github" t-if="website.social_github"><i class="fa fa-github"/></a>
+		                    </h2>
+		       			</div>
+		       			<div class="col-md-4 mt32">
+		       				<h4 class="title">About</h4>
+		       				<ul class="list-unstyled">
+		                        <li><a href="/contactus">Contact us</a></li>
+		                        <li><a href="/aboutus">About us</a></li>
+		                        <li><a href="/faq">FAQ</a></li>
+		                    </ul>
+		                    <h4 class="title">Legal</h4>
+		                    <ul class="list-unstyled">
+		                        <li><a href="/legal/privacy-policy">Privacy policy</a></li>
+		                        <li><a href="/legal/terms-of-use">Terms of use</a></li>
+		                        <li><a href="/legal/advice">Legal advice</a></li>
+		                    </ul>		                    
+		       				 <t t-call="website.language_selector"/>
+		       			</div>
+		       		</div>
+		       	</div>
+		       </section>
+		      </div>
+       		</xpath>
+       </template>
+       
+        <template id="magazine_footer_copyright" name="Magazine Footer" inherit_id="website.layout_footer_copyright">
+        	<xpath expr="//div[hasclass('container', 'mt16', 'mb8')]" position="replace">
+        	
+        	</xpath>
+        </template>
+    </data>
+</odoo>

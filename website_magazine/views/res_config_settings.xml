@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.blog</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="20"/>
+            <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                 <div id="webmaster_settings" position="after">
+                 	 <h2>Magazine</h2>
+                 	 <div class="row mt16 o_settings_container" id="blog_cover_settings">
+                 	 	<div class="col-xs-12 col-md-6 o_setting_box" id="domain_setting">
+                 	 		<div class="o_setting_right_pane">
+                 	 			<div class="content-group">
+                 	 			 <div class="row mt16">
+                 	 				<label class="col-md-3 o_light_label" string="Posts per page" />
+                                   <field name="ppg"  />
+                                   </div>    
+                                   <div class="row mt16">
+                 	 				<label class="col-md-3 o_light_label" string="Post per row" />
+                                   <field name="ppr" />
+                                   </div>  
+                                                                   
+                                   <div class="row mt16">
+                 	 				<label class="col-md-3 o_light_label" string="Style" />
+                                   <field name="style" class="oe_inline"/>
+                                   </div>
+                                   <div class="row mt16">
+                 	 				<label class="col-md-3 o_light_label" string="Mouse Over" />
+                                   <field name="over_style" class="oe_inline"/>
+                                   </div>
+                                    <div class="row mt16">
+                                   	<label class="col-md-3 o_light_label" string="Frosted Glass" />
+                                   	<field name="frosted_glass"/>
+                                   </div>                                       
+                                    <div class="row mt16">
+                                   	<label class="col-md-3 o_light_label" string="Author" />
+                                   	<field name="author"/>
+                                   </div>                                 
+                                    <div class="row mt16">
+                                   	<label class="col-md-3 o_light_label" string="Pagination" />
+                                   	<field name="pagination"/>
+                                   </div>
+                 	 			</div>
+                 	 		</div>
+                 	 	</div>
+                 	 	<div class="col-xs-12 col-md-6 o_setting_box" id="domain_setting">
+                 	 		<div class="o_setting_right_pane">
+                 	 		<label name="ribbons" string="Text in ribbons"/>
+                 	 		<div class="content-group">
+                 	 		<div class="row mt16">
+                                	<label class="col-md-3 o_light_label" string="Primary"/>
+                                   <field name="primary_ribbon" />
+                                </div>
+                            <div class="row mt16">
+                                	<label class="col-md-3 o_light_label" string="Success"/>
+                                   <field name="success_ribbon" />
+                                </div>   
+                            <div class="row mt16">
+                                	<label class="col-md-3 o_light_label" string="Info"/>
+                                   <field name="info_ribbon"  />
+                                </div>
+                            <div class="row mt16">
+                                	<label class="col-md-3 o_light_label" string="Warning"/>
+                                   <field name="warning_ribbon"  />
+                                </div>
+                            <div class="row mt16">
+                                	<label class="col-md-3 o_light_label" string="Danger"/>
+                                   <field name="danger_ribbon"  />
+                                </div>  
+                 	 			</div>
+                 	 		</div>
+                 	 	</div>
+                 	  </div> 
+                 	 </div>
+            </field>
+           </record>
+
+</odoo>

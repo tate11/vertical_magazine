@@ -1,0 +1,349 @@
+@charset "utf-8"
+
+/* ---- Default Styles ---- */
+
+.oe_post
+    border: 1px solid rgba(100,100,100,0.2)
+
+@charset "utf-8"
+
+/* ---- Default Styles ---- */
+
+.posts_pager
+    text-align: center
+    > div
+        margin: 0 auto
+        display: inline-block
+        > *
+            vertical-align: middle
+            float: none
+            padding: 0
+        > ul
+            padding-left: 10px
+    > ul
+        margin-left: auto
+        margin-right: auto
+
+.oe_post
+    position: relative
+    .oe_post_image
+        position: absolute
+        left: 0
+        right: 0
+        top: 0
+        bottom: 0
+        text-align: center
+        overflow: hidden
+        img
+            position: absolute
+            width: 100%
+            height: 100%
+            right: 0
+            z-index: 4
+    .ic_none
+        img
+            -moz-transition: all 0.3s
+            -webkit-transition: all 0.3s
+            transition: all 0.3s
+            
+    .ic_bw
+        img
+            -webkit-filter: grayscale(100%)
+            filter: grayscale(100%)
+            -moz-transition: all 0.3s
+            -webkit-transition: all 0.3s
+            transition: all 0.3s
+    .ic_opacity
+        img
+            -webkit-filter: opacity(30%)
+            filter: opacity(30%)
+            -webkit-transition: all 0.3s
+            transition: all 0.3s
+    .ic_blur
+        img
+            -webkit-filter: blur(5px)
+            filter: blur(5px)
+            -webkit-transition: all 0.3s
+            transition: all 0.3s
+    .ic_sepia
+        img
+            -webkit-filter: sepia(100%)
+            filter: sepia(100%)
+            -webkit-transition: all 0.3s
+            transition: all 0.3s
+    .ic_zoom
+        img
+            -ms-transform: scale(1.5)
+            -webkit-transform: scale(1.5)
+            transform: scale(1.5)
+            -webkit-transition: all 0.3s
+            transition: all 0.3s
+    .ic_hnone
+        img:hover
+            -webkit-filter: grayscale(0%)
+            filter: grayscale(0%)
+            -ms-transform: scale(1)
+            -webkit-transform: scale(1)
+            transform: scale(1)               
+    .ic_hbw
+        img:hover
+            -webkit-filter: grayscale(100%)
+            filter: grayscale(100%)
+    .ic_hopacity
+        img:hover
+            -webkit-filter: opacity(30%)
+            filter: opacity(30%)
+    .ic_hblur
+        img:hover
+            -webkit-filter: blur(5px)
+            filter: blur(5px)
+    .ic_hsepia
+        img:hover
+            -webkit-filter: sepia(100%)
+            filter: sepia(100%)
+    .ic_hzoom
+        img:hover
+            -ms-transform: scale(1.5)
+            -webkit-transform: scale(1.5)
+            transform: scale(1.5)
+    .ic_hzoom_c
+        img:hover
+            -ms-transform: scale(1.5)
+            -webkit-transform: scale(1.5)
+            transform: scale(1.5)
+            filter: grayscale(0%)
+            
+    section
+        position: absolute
+        left: 0
+        right: 0
+        bottom: 0
+        overflow: hidden
+        padding: 0 15px 24px 10px
+        min-height: 56px
+        z-index: 5
+        &.frosted        	
+            border-top: 1px solid rgba(255,255,255,0.2)
+            background: rgba(255, 255, 255, 0.65)
+    .post_price
+        padding: 5px 0
+        position: absolute
+        bottom: 0
+    .oe_post_cart
+        position: relative
+        width: 100%
+        height: 100%
+    .oe_subdescription
+        font-size: 0.8em
+        overflow: hidden
+        margin-bottom: 10px
+
+/* ---- post Sizes ---- */
+
+#posts_grid
+    > table tr:not(:first-child) > td
+        height: 100%
+    &.col-md-12, &.col-md-9
+        > table > tbody > tr > td:empty
+            height: 0
+
+    &.col-md-12
+        .oe-height-1
+            height: 75px
+        .oe-height-2
+            height: 150px
+        .oe-height-4
+            height: 300px
+        .oe-height-6
+            height: 450px
+        .oe-height-8
+            height: 600px
+    &.col-md-9
+        .oe-height-1
+            height: 70px
+        .oe-height-2
+            height: 140px
+        .oe-height-4
+            height: 280px
+        .oe-height-6
+            height: 420px
+        .oe-height-8
+            height: 560px
+
+    .oe_post.oe_grid .oe_subdescription
+        max-height: 40px
+
+@media (min-width: 992px)
+    #posts_grid
+        &.col-md-12
+            .oe-height-1
+                height: 95px
+            .oe-height-2
+                height: 190px
+            .oe-height-4
+                height: 380px
+            .oe-height-6
+                height: 570px
+            .oe-height-8
+                height: 760px
+
+            .oe_post.oe_grid .oe_subdescription
+                max-height: 70px
+        &.col-md-9
+            .oe-height-1
+                height: 72px
+            .oe-height-2
+                height: 144px
+            .oe-height-4
+                height: 288px
+            .oe-height-6
+                height: 432px
+            .oe-height-8
+                height: 576px
+
+@media (min-width: 1200px)
+    #posts_grid
+        &.col-md-12
+            .oe-height-1
+                height: 125px
+            .oe-height-2
+                height: 250px
+            .oe-height-4
+                height: 500px
+            .oe-height-6
+                height: 750px
+            .oe-height-8
+                height: 1000px
+        &.col-md-9
+            .oe-height-1
+                height: 95px
+            .oe-height-2
+                height: 190px
+            .oe-height-4
+                height: 380px
+            .oe-height-6
+                height: 570px
+            .oe-height-8
+                height: 760px
+
+        .oe_post.oe_grid .oe_subdescription
+            max-height: 120px
+
+@media (max-width: 768px)
+    #posts_grid
+        table, tbody,tr, td
+            float: left
+            width: 100%
+            display: inline-block
+        .oe_post
+            float: left
+            width: 100%
+            display: inline-block
+            &.oe_grid
+                height: 400px
+            &.oe_grid section
+                background: rgba(100, 100, 100, 0.2)
+            .oe_subdescription
+                max-height: 200px
+    .posts_pager
+        .pagination
+            margin: 5px auto !important
+
+@media (max-width: 400px)
+    #posts_grid
+        .oe_post
+            &.oe_grid
+                height: 270px
+            &.oe_list
+                height: 200px
+                section
+                    background: rgba(100, 100, 100, 0.2)
+            .oe_post_image
+                top: 0
+                bottom: 65px
+    #posts_grid
+        .oe_post.oe_image
+            .oe_post_image
+                bottom: 50px
+
+/* Ribbon for promotionso on products */
+
+.oe_post
+    &.oe_ribbon_promo_primary
+        .rb-primary
+            display: block
+    &.oe_ribbon_promo_success
+        .rb-success
+            display: block
+    &.oe_ribbon_promo_info
+        .rb-info
+            display: block
+    &.oe_ribbon_promo_warning
+        .rb-warning
+            display: block
+    &.oe_ribbon_promo_danger
+        .rb-danger
+            display: block
+
+    .ribbon-wrapper
+        width: 85px
+        height: 88px
+        z-index: 5
+        overflow: hidden
+        position: absolute
+        top: 0
+        right: 0
+
+    .rb-primary
+        display: none
+
+    .rb-success
+        display: none
+
+    .rb-info
+        display: none
+
+    .rb-warning
+        display: none
+
+    .rb-danger
+        display: none
+
+
+    .ribbon
+        font: bold 15px Sans-Serif
+        color: white
+        text-align: center
+        -webkit-transform: rotate(45deg)
+        -moz-transform:    rotate(45deg)
+        -ms-transform:     rotate(45deg)
+        -o-transform:      rotate(45deg)
+        position: relative
+        padding: 7px 0
+        left: -5px
+        top: 15px
+        width: 120px
+        cursor: default
+
+/* ---- Publish managment and options ---- */
+
+.oe_overlay_options
+    .dropdown
+        ul[name="item-size"]
+            table
+                margin-left: 20px
+            td
+                margin: 0
+                padding: 0
+                width: 20px
+                height: 20px
+                border: 1px #dddddd solid
+                cursor: pointer
+                &.selected
+                    background-color: #B1D4F1
+            table.oe_hover td.selected
+                background-color: transparent
+            table.oe_hover td.select
+                background-color: #B1D4F1
+
+

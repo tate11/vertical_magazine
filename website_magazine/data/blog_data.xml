@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="website_magazine.image_promo_primary" model="blog.post.style">
+            <field name="name">Primary Ribbon</field>
+            <field name="html_class">oe_ribbon_promo_primary</field>
+        </record>
+        <record id="website_magazine.image_promo_success" model="blog.post.style">
+            <field name="name">Success Ribbon</field>
+            <field name="html_class">oe_ribbon_promo_success</field>
+        </record>
+       <record id="website_magazine.image_promo_info" model="blog.post.style">
+            <field name="name">Info Ribbon</field>
+            <field name="html_class">oe_ribbon_promo_info</field>
+        </record>
+        <record id="website_magazine.image_promo_warning" model="blog.post.style">
+            <field name="name">Warning Ribbon</field>
+            <field name="html_class">oe_ribbon_promo_warning</field>
+        </record>
+        <record id="website_magazine.image_promo_danger" model="blog.post.style">
+            <field name="name">Danger Ribbon</field>
+            <field name="html_class">oe_ribbon_promo_danger</field>
+        </record>
+        <function model="blog.post" name="create_cover_images"/>
+        
+        <record id="website_blog_advanced.create_blog_posts_thumbnails" model="base.automation">
+            <field name="code">
+record = model.browse(env.context['active_id'])
+record.create_images()
+url_domain  = request.env['ir.config_parameter'].get_param('web.base.url').split('/')[2].split(':')[0]  
+ppr = request.env['website'].search([('domain','=',url_domain)]).ppr
+record.create_cover_image(record.id,ppr, record.website_size_x, record.website_size_y)
+            
+            </field>
+        </record>
+       </data>
+</odoo>

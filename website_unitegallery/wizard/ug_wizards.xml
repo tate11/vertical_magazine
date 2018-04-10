@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<record id="website_ug_restart_view" model="ir.ui.view">
+			<field name="name">website.unitegallery.restart.form</field>
+            <field name="model">website.unitegallery.restart</field>
+            <field name="arch" type="xml">
+            	<form  string="Restart Unite Gallery Setings">
+            		 <group class="oe_title">
+            		 
+            		 </group>  
+            		 <footer>
+                        <button name="restart_unite_gallery" string="Submit" type="object" class="btn btn-sm btn-primary"/>
+                        <button string="Cancel" class="btn btn-sm btn-default" special="cancel"/>
+                    </footer>          	
+            	</form>
+            </field>   
+		</record>
+		
+		<record id="website_ug_restart_action" model="ir.actions.act_window">
+            <field name="name">Restart Unite Gallery Setings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">website.unitegallery.restart</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="website_ug_restart_view"/>
+            <field name="target">new</field>
+        </record>
+	
+	
+	</data>
+</odoo>
